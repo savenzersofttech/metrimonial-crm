@@ -65,7 +65,7 @@
                     <div class="nav-link-icon"><i data-feather="users"></i></div>
                    Profiles Reports
                 </a>
-                 <a class="nav-link {{ request()->routeIs('services.services.index') ? 'active' : '' }}" href="{{ route('services.services.index') }}">
+                 <a class="nav-link {{ request()->routeIs('services.payments*') ? 'active' : '' }}" href="{{ route('services.payments.index') }}">
                     <div class="nav-link-icon"><i data-feather="credit-card"></i></div>
                    Payment
                 </a>

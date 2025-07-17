@@ -96,15 +96,17 @@ class ProfileAssignmentController extends Controller
             'note' => $request->note,
             'assigned_at' => now(),
         ]);
-    }
 
-    WelcomeCall::create([
+          WelcomeCall::create([
          'profile_id' => $profileId,
             'employee_id' => $request->employee_id,
             'note' => $request->note,
             'created_at' => now(),
             'updated_at' => now(),
     ]);
+    }
+
+  
 
     return redirect()->route('admin.assigns.index')->with('success', 'Profiles assigned successfully.');
 }

@@ -49,7 +49,7 @@ class WelcomeCallController extends Controller
             'comment' => 'nullable|string',
             'follow_up_date' => 'nullable|date',
         ]);
-
+        
         WelcomeCall::create($request->all());
         return redirect()->route('services.welcome-calls.index')->with('success', 'Welcome Call created.');
     }

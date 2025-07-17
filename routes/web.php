@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\DashboardController as AdminDashboard;
+use App\Http\Controllers\Admin\{
+    DashboardController as AdminDashboard,
+    LeadAssignmentController    
+};
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
@@ -11,19 +14,27 @@ use App\Http\Controllers\CustomerProfileController;
 use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ServicesController;
-use App\Http\Controllers\services\WelcomeCallController;
-use App\Http\Controllers\Services\ServiceController as OngoingServicesController;
-use App\Http\Controllers\Services\ProfileSearchController;
+
+use App\Http\Controllers\Services\{ 
+    ProfileSearchController,
+    PaymentLinkController,
+    ServiceController as OngoingServicesController,
+    WelcomeCallController,
+};
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileAssignmentController;
 
 //sales
-use App\Http\Controllers\Sales\LeadManagementController;
-use App\Http\Controllers\Sales\SalesTrackingController;
-use App\Http\Controllers\Sales\TargetSettingController;
-use App\Http\Controllers\Sales\TodayTaskController;
-use App\Http\Controllers\Sales\FollowUpController;
-use App\Http\Controllers\Sales\SalesReportController;
+use App\Http\Controllers\Sales\{
+    LeadController,
+    SalesTrackingController,
+    LeadManagementController,
+    TargetSettingController,
+    TodayTaskController,
+    FollowUpController,
+    SalesReportController,  
+
+};
 
 
 Route::get('/dashboard', function () {
@@ -79,6 +90,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     });
 
     Route::resource('assigns', ProfileAssignmentController::class);
+    Route::resource('lead_assignments', LeadAssignmentController::class);
 });
 
 
@@ -86,7 +98,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 // Sales routes
 Route::middleware(['auth'])->prefix('sales')->name('sales.')->group(function () {
     Route::get('/dashboard', [SalesController::class, 'index'])->name('dashboard');
-     Route::resource('leads', LeadManagementController::class);
+     Route::resource('leads', LeadController::class);
      Route::resource('sales', SalesTrackingController::class);
      Route::resource('target', TargetSettingController::class);
      Route::resource('tasks', TodayTaskController::class);
@@ -105,8 +117,9 @@ Route::middleware(['auth'])->prefix('services')->name('services.')->group(functi
 
         Route::resource('reports', ProfileSearchController::class);
         Route::get('/reports/profiles/search/results', [ProfileSearchController::class, 'search'])->name('reports.search');
-
         Route::get('/profile-reports-z',[ProfileSearchController::class,'index'])->name('profile-reports.send');
+        
+        Route::resource('payments', PaymentLinkController::class);
 
         
 
