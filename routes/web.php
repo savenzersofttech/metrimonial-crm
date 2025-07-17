@@ -17,6 +17,13 @@ use App\Http\Controllers\SearchSendProfilesController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileAssignmentController;
 
+//sales
+use App\Http\Controllers\Sales\LeadManagementController;
+use App\Http\Controllers\Sales\SalesTrackingController;
+use App\Http\Controllers\Sales\TargetSettingController;
+use App\Http\Controllers\Sales\TodayTaskController;
+use App\Http\Controllers\Sales\FollowUpController;
+use App\Http\Controllers\Sales\SalesReportController;
 
 Route::get('/clear', function () {
     Artisan::call('route:clear');
@@ -74,11 +81,20 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 
 });
 
+
+
 // Sales routes
 Route::middleware(['auth'])->prefix('sales')->name('sales.')->group(function () {
     Route::get('/dashboard', [SalesController::class, 'index'])->name('dashboard');
-    // Route::get('/', [SalesController::class, 'index'])->name('index');
+     Route::resource('leads', LeadManagementController::class);
+     Route::resource('sales', SalesTrackingController::class);
+     Route::resource('target', TargetSettingController::class);
+     Route::resource('tasks', TodayTaskController::class);
+     Route::resource('follow-up', FollowUpController::class);
+     Route::resource('reports', SalesReportController::class);
+ 
 });
+
 
 // Services routes
 Route::middleware(['auth'])->prefix('services')->name('services.')->group(function () {

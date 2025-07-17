@@ -43,7 +43,7 @@
     {{-- <script src="{{ asset('assets/sb2/assets/demo/chart-area-demo.js') }}"></script> --}}
     {{-- <script src="{{ asset('assets/sb2/assets/demo/chart-bar-demo.js') }}"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    {{-- <script src="{{ asset('assets/sb2/js/datatables/datatables-simple-demo.js') }}"></script> --}}
+    <script src="{{ asset('assets/sb2/js/datatables/datatables-simple-demo.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/sb2/js/litepicker.js') }}"></script>
     <script src="{{ asset('assets/sb2/js/custom/form.js') }}"></script>

@@ -23,7 +23,7 @@
                 <div class="sidenav-menu-heading">Core</div>
                 <!-- Sidenav Accordion (Dashboard)-->
 
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/admin/dashboard">
                     <div class="nav-link-icon"><i data-feather="activity"></i></div>
                     Dashboards
                 </a>
@@ -39,31 +39,71 @@
                         <a class="nav-link" href="dashboard-1.html">
                             Default
                             <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
-                        </a>
+                        </a>    
                         <a class="nav-link" href="dashboard-2.html">Multipurpose</a>
                         <a class="nav-link" href="dashboard-3.html">Affiliate</a>
                     </nav>
                 </div>
 
                 <!-- Services Menu Group -->
-
-
-
-
-
                 <div class="sidenav-menu-heading">SERVICES</div>
-                <a class="nav-link" href="{{ route('services.welcome-calls.index') }}">
+                <a class="nav-link {{ request()->routeIs('services.dashboard') ? 'active' : '' }}" href="{{ route('services.dashboard') }}">
+                    <div class="nav-link-icon"><i data-feather="bar-chart-2"></i></div>
+                    Dashboard
+                </a>
+
+
+                <a class="nav-link {{ request()->routeIs('services.welcome-calls.index') ? 'active' : '' }}" href="{{ route('services.welcome-calls.index') }}">
                     <div class="nav-link-icon"><i data-feather="phone-call"></i></div>
                     Welcome Calls
                 </a>
 
 
 
-                <a class="nav-link" href="{{ route('services.ongoing-services.index') }}">
+                <a class="nav-link {{ request()->routeIs('services.ongoing-services.index') ? 'active' : '' }}" href="{{ route('services.ongoing-services.index') }}">
                     <div class="nav-link-icon"><i data-feather="clock"></i></div>
                     Ongoing Services
                 </a>
 
+                <!-- SALE Menu Group -->
+                <div class="sidenav-menu-heading">SALES</div>
+                <a class="nav-link {{ request()->routeIs('sales.dashboard') ? 'active' : '' }}" href="{{ route('sales.dashboard') }}">
+                    <div class="nav-link-icon"><i data-feather="bar-chart-2"></i></div>
+                    Dashboard
+                </a>
+
+                 <a class="nav-link {{ request()->routeIs('sales.leads.index') ? 'active' : '' }}" href="{{ route('sales.leads.index') }}">
+                    <div class="nav-link-icon"><i data-feather="user-plus"></i></div>
+                    Leads
+                </a>
+
+                <a class="nav-link {{ request()->routeIs('sales.sales.index') ? 'active' : '' }}" href="{{ route('sales.sales.index') }}">
+                    <div class="nav-link-icon"><i data-feather="trending-up"></i></div>
+                    Sales
+                </a>
+
+                 <a class="nav-link {{ request()->routeIs('sales.target.index') ? 'active' : '' }}" href="{{ route('sales.target.index') }}">
+                    <div class="nav-link-icon"><i data-feather="target"></i></div>
+                    Target
+                </a>
+
+
+                <a class="nav-link {{ request()->routeIs('sales.tasks.index') ? 'active' : '' }}" href="{{ route('sales.tasks.index') }}">
+                    <div class="nav-link-icon"><i data-feather="check-square"></i></div>
+                    Tasks
+                </a>
+
+                <a class="nav-link {{ request()->routeIs('sales.follow-up.index') ? 'active' : '' }}" href="{{ route('sales.follow-up.index') }}">
+                    <div class="nav-link-icon"><i data-feather="repeat"></i></div>
+                    Follow up
+                </a>
+
+                <a class="nav-link {{ request()->routeIs('sales.follow-up.index') ? 'active' : '' }}" href="{{ route('sales.follow-up.index') }}">
+                    <div class="nav-link-icon"><i data-feather="bar-chart-2"></i></div>
+                   Reports
+                </a>
+
+            
             </div>
         </div>
         <div class="sidenav-footer">
