@@ -6,7 +6,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>@yield('title', config('app.name', 'Laravel') | config('app.name', 'Laravel'))</title>
-
     <!-- Core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
@@ -16,14 +15,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css" />
     <link rel="stylesheet" href="{{ asset('assets/sb2/css/custom.css') }}" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/litepicker@2.0.12/dist/css/litepicker.css" rel="stylesheet">
 
 
     <!-- Allow child views to add CSS -->
     @stack('css')
 </head>
-
 <body class="nav-fixed">
     @include('layouts.partials.sb2.navbar')
     <div id="layoutSidenav">
@@ -48,10 +57,14 @@
     <script src="{{ asset('assets/sb2/js/litepicker.js') }}"></script>
     <script src="{{ asset('assets/sb2/js/custom/form.js') }}"></script>
     <script src="{{ asset('assets/sb2/js/custom/script.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/litepicker@2.0.12/dist/litepicker.js"></script>
+    
     <!-- intl-tel-input JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
+<script>feather.replace();</script>
 
 <!-- Toast container -->
 <div style="position: fixed; bottom: 1rem; right: 1rem; z-index: 9999;">
@@ -101,13 +114,26 @@ document.addEventListener('DOMContentLoaded', function () {
 // showSuccessToast("Done!", "Profile updated successfully.");
 // showDangerToast("Oops!", "Something went wrong. Please try again.");
 
+    @if (session('success'))
+            showSuccessToast("Success!", @json(session('success')));
+    
+    @endif
+
+    @if (session('error'))
+            showDangerToast("Error!", @json(session('error')));
+    
+    @endif
+
+    @if ($errors->any())
+            let errorMessages = {!! json_encode($errors->all()) !!};
+            let errorText = errorMessages.join("\n");
+            showDangerToast("Validation Error", errorText);
+    @endif
+
+    
+
 });
 </script>
-
-
-
-
-    <!-- Allow child views to add JS -->
     @stack('scripts')
 </body>
 </html>

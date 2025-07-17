@@ -83,14 +83,10 @@
                 </a>
             </li>
 
-            <li class="{{ request()->routeIs('services.ongoing-services.index') ? 'active' : '' }}">
-                <a href="{{ route('services.ongoing-services.index') }}" class="nav-link">
-                    <i class="fas fa-sync-alt fa-lg"></i><span>Ongoing Services</span>
-                </a>
-            </li>
+          
 
            <li class="dropdown {{ request()->routeIs('services.profile-reports.*') ? 'active' : '' }}">
-                    <a href="{{ route('services.profile-reports.index') }}" class="nav-link"><i data-feather="file-text"></i><span>Profiles Reports</span></a>
+                    <a href="#" class="nav-link"><i data-feather="file-text"></i><span>Profiles Reports</span></a>
            </li>
         </ul>
     </aside>

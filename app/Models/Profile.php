@@ -100,6 +100,11 @@ class Profile extends Model
     ];
 
    
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
 
     public function staffAssignment()
     {

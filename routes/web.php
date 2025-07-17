@@ -12,8 +12,8 @@ use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\services\WelcomeCallController;
-use App\Http\Controllers\OngoingServicesController;
-use App\Http\Controllers\SearchSendProfilesController;
+use App\Http\Controllers\Services\ServiceController as OngoingServicesController;
+use App\Http\Controllers\Services\ProfileSearchController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileAssignmentController;
 
@@ -24,6 +24,12 @@ use App\Http\Controllers\Sales\TargetSettingController;
 use App\Http\Controllers\Sales\TodayTaskController;
 use App\Http\Controllers\Sales\FollowUpController;
 use App\Http\Controllers\Sales\SalesReportController;
+
+
+Route::get('/dashboard', function () {
+    return 'Hello Dashboard';
+})->name('dashboard');
+
 
 Route::get('/clear', function () {
     Artisan::call('route:clear');
@@ -72,13 +78,7 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
     Route::put('/{role}', [PermissionController::class, 'update'])->name('update');
     });
 
-     Route::resource('assigns', ProfileAssignmentController::class);
-
-
-
-
-
-
+    Route::resource('assigns', ProfileAssignmentController::class);
 });
 
 
@@ -98,11 +98,15 @@ Route::middleware(['auth'])->prefix('sales')->name('sales.')->group(function () 
 
 // Services routes
 Route::middleware(['auth'])->prefix('services')->name('services.')->group(function () {
-    Route::get('/dashboard', [ServicesController::class, 'dashboard'])->name('dashboard');
-    Route::resource('welcome-calls', WelcomeCallController::class);
-        Route::resource('ongoing-services', OngoingServicesController::class);
-        Route::resource('profile-reports', SearchSendProfilesController::class);
-        Route::get('/profile-reports-z',[SearchSendProfilesController::class,'index'])->name('profile-reports.send');
+        Route::get('/dashboard', [ServicesController::class, 'dashboard'])->name('dashboard');
+        Route::resource('welcome-calls', WelcomeCallController::class);
+        Route::resource('services', OngoingServicesController::class);
+        Route::get('/history/{id}', [OngoingServicesController::class, 'showHistory'])->name('services.history');
+
+        Route::resource('reports', ProfileSearchController::class);
+        Route::get('/reports/profiles/search/results', [ProfileSearchController::class, 'search'])->name('reports.search');
+
+        Route::get('/profile-reports-z',[ProfileSearchController::class,'index'])->name('profile-reports.send');
 
         
 

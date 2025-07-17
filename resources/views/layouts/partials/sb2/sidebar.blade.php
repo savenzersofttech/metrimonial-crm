@@ -57,13 +57,19 @@
                     <div class="nav-link-icon"><i data-feather="phone-call"></i></div>
                     Welcome Calls
                 </a>
-
-
-
-                <a class="nav-link {{ request()->routeIs('services.ongoing-services.index') ? 'active' : '' }}" href="{{ route('services.ongoing-services.index') }}">
+                <a class="nav-link {{ request()->routeIs('services.services*') ? 'active' : '' }}" href="{{ route('services.services.index') }}">
                     <div class="nav-link-icon"><i data-feather="clock"></i></div>
                     Ongoing Services
                 </a>
+                 <a class="nav-link {{ request()->routeIs('services.reports*') ? 'active' : '' }}" href="{{ route('services.reports.index') }}">
+                    <div class="nav-link-icon"><i data-feather="users"></i></div>
+                   Profiles Reports
+                </a>
+                 <a class="nav-link {{ request()->routeIs('services.services.index') ? 'active' : '' }}" href="{{ route('services.services.index') }}">
+                    <div class="nav-link-icon"><i data-feather="credit-card"></i></div>
+                   Payment
+                </a>
+               
 
                 <!-- SALE Menu Group -->
                 <div class="sidenav-menu-heading">SALES</div>

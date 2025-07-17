@@ -9,22 +9,22 @@ class SearchSendProfilesController extends Controller
 {
     public function index()
     {
-        return view('services.profile-reports.index');
+        return view('services.reports.index');
     }
 
     public function create()
     {
-        return view('services.profile-reports-create');
+        return view('services.reports.create');
     }
 
     public function store(Request $request)
     {
-        return redirect()->route('services.profile-reports.index')->with('success', 'Profile created.');
+        return redirect()->route('services.reports.index')->with('success', 'Profile created.');
     }
 
     public function show($id)
     {
-        return view('services.profile-reports-show', ['id' => $id]);
+        return view('services.reports.show', ['id' => $id]);
     }
 
     public function edit($id)
@@ -34,11 +34,11 @@ class SearchSendProfilesController extends Controller
 
     public function update(Request $request, $id)
     {
-        return redirect()->route('services.profile-reports.index')->with('success', 'Profile updated.');
+        return redirect()->route('services.reports.index')->with('success', 'Profile updated.');
     }
 
     public function destroy($id)
     {
-        return redirect()->route('services.profile-reports.index')->with('success', 'Profile deleted.');
+        return redirect()->route('services.reports.index')->with('success', 'Profile deleted.');
     }
 }
